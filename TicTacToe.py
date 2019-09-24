@@ -11,18 +11,22 @@
 # In[1]:
 
 
+from IPython.display import clear_output
+
 def display_board(board):
     board = [board[0],board[1],board[2],board[3],board[4],board[5],board[6],board[7],board[8],board[9]]    
-   
+    
+    print('\n')
     print(board[7],' | ',board[8],' | ',board[9])
     print('-------------')
     print(board[4],' | ',board[5],' | ',board[6])
     print('-------------')
     print(board[1],' | ',board[2],' | ',board[3])
+    print('\n')
     
 
 
-# In[50]:
+# In[2]:
 
 
 def player_input():
@@ -38,7 +42,7 @@ def player_input():
     return player1
 
 
-# In[51]:
+# In[3]:
 
 
 def place_marker(board, marker, position):
@@ -50,17 +54,17 @@ def place_marker(board, marker, position):
     board[position] = marker
 
 
-# In[52]:
+# In[4]:
 
 
 def clear(board):
     board[0], board[1], board[2], board[3] ,board[4] ,board[5] ,board[6] ,board[7] ,board[8], board[9] = ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ' 
 
 
-# In[53]:
+# In[5]:
 
 
-def win_check(board, mark):
+def win_check(board):
     if ((board[1],board[2],board[3])==('X', 'X', 'X')) or ((board[4],board[5],board[6])==('X', 'X', 'X')) or ((board[7],board[8],board[9])==('X', 'X', 'X')) or ((board[1],board[5],board[9])==('X', 'X', 'X')) or ((board[3],board[5],board[7])==('X', 'X', 'X')) or ((board[7],board[4],board[1])==('X', 'X', 'X')) or ((board[8],board[5],board[2])==('X', 'X', 'X')) or ((board[9],board[6],board[3])==('X', 'X', 'X')):
         print('X WON!')
         return True
@@ -70,7 +74,7 @@ def win_check(board, mark):
         
 
 
-# In[54]:
+# In[6]:
 
 
 def space_check(board, position):
@@ -80,7 +84,7 @@ def space_check(board, position):
         return False
 
 
-# In[55]:
+# In[7]:
 
 
 def full_board_check(board):
@@ -91,7 +95,7 @@ def full_board_check(board):
         return False
 
 
-# In[56]:
+# In[8]:
 
 
 def input_check():
@@ -116,7 +120,7 @@ def input_check():
     
 
 
-# In[57]:
+# In[9]:
 
 
 def player_choice(board):
@@ -132,7 +136,18 @@ def player_choice(board):
     
 
 
-# In[60]:
+# In[10]:
+
+
+def replay():
+    again = input("Want to play AGAIN? 'y' or 'n'")
+    if again == 'y':
+        return True
+    else:
+        return False
+
+
+# In[14]:
 
 
 print('Welcome to Tic Tac Toe!')
@@ -142,9 +157,10 @@ while True:
     clear(board)
     
     while True:
+        clear_output()
         display_board(board)
         
-        if win_check(board, marker) == True:
+        if win_check(board) == True:
             break
         if full_board_check(board) == True:
             break
